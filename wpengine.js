@@ -6,6 +6,7 @@
     $installsCounter.text('Installs: 0');
     var $installSearch = jQuery('<input type="text" placeholder="Search..." id="installSearch"/>');
 
+    jQuery('.blue-thead-links').hide();
     $installSearch.on('keyup', function (e) {
         var searchWord = $installSearch.val();
         jQuery('.install-list .install').hide();
