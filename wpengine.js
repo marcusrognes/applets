@@ -30,8 +30,16 @@
         accounts.push(jQuery(this).text());
     });
 
+    var current = 0;
+    loadIframeRecursive(current, accounts);
 
-    for (var i = 0; i < accounts.length; i++) {
+    function loadIframeRecursive(i, list) {
+        console.log(i);
+        if (list.length == i || list.length < i) {
+            return;
+        }
+        console.log(list[i]);
+
         jQuery('body').append('<iframe id="frame_' + accounts[i] + '">');
         var $frame = jQuery('#frame_' + accounts[i]);
         $frame.hide();
@@ -42,6 +50,7 @@
                 installs.push(jQuery(this).find('.install-name a').text());
             });
             $installsCounter.text('Installs: ' + installs.length);
+            loadIframeRecursive(i + 1, list);
         });
     }
 
