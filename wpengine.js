@@ -1,6 +1,4 @@
 (function () {
-
-
     var accounts = [];
     var installs = [];
     jQuery('.install-list .install').remove();
@@ -34,14 +32,14 @@
     loadIframeRecursive(current, accounts);
 
     function loadIframeRecursive(i, list) {
-        console.log(i);
         if (list.length == i || list.length < i) {
             return;
         }
-        console.log(list[i]);
 
         jQuery('body').append('<iframe id="frame_' + accounts[i] + '">');
+
         var $frame = jQuery('#frame_' + accounts[i]);
+
         $frame.hide();
         $frame.attr('src', 'https://my.wpengine.com/accounts/' + accounts[i]);
         $frame.load(function () {
@@ -49,9 +47,9 @@
                 jQuery('.install-list tbody').append(jQuery(this));
                 installs.push(jQuery(this).find('.install-name a').text());
             });
+
             $installsCounter.text('Installs: ' + installs.length);
             loadIframeRecursive(i + 1, list);
         });
     }
-
 })();
